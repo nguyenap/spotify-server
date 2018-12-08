@@ -40,12 +40,9 @@ app.get('/callback', function(req, res) {
     res.redirect(uri + '?access_token=' + access_token)
   })
 })
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(process.env.FRONTEND_URI, 'public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  console.log('get reload')
 })
 
 let port = process.env.PORT || 8888
