@@ -41,7 +41,7 @@ app.get('/callback', function(req, res) {
   })
 })
 app.get('*', function (request, response){
-  response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+  response.sendFile(path.resolve(process.env.FRONTEND_URI, 'public', 'index.html'))
   console.log('get reload')
 })
 
