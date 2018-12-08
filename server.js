@@ -40,6 +40,13 @@ app.get('/callback', function(req, res) {
     res.redirect(uri + '?access_token=' + access_token)
   })
 })
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(process.env.FRONTEND_URI, 'public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 let port = process.env.PORT || 8888
 console.log(`Listening on port ${port}. Go /login to initiate authentication flow.`)
